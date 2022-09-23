@@ -1,0 +1,46 @@
+<div>
+  <div>
+    <button *ngIf="addContact === false" (click)="displayAddContact(false)">Create Contact</button>
+    <button *ngIf="addContact === true" (click)="displayAddContact(true)">Hide</button>
+  </div>
+  <div *ngIf="addContact === true">
+    <div>
+      <label for="name">Name: </label>
+      <input id="name" type="text" [(ngModel)]="name">
+    </div>
+    <div>
+      <label for="relation">Relation: </label>
+      <input id="relation" type="text" [(ngModel)]="relation">
+    </div>
+    <div>
+      <label for="phone">Phone: </label>
+      <input id="phone" type="text" placeholder="XXX-XXX-XXXX" [(ngModel)]="phone">
+    </div>
+    <div>
+      <label for="email">Email: </label>
+      <input id="email" type="text" placeholder="example@gmail.com" [(ngModel)]="email">
+    </div>
+    <div>
+      <label for="address">Address: </label>
+      <input id="address" type="text" [(ngModel)]="address"></div>
+    <div>
+      <label for="birthday">Birthday: </label>
+      <input id="birthday" type="date" [(ngModel)]="birthday">
+    </div>
+    <div>
+      <label for="company">Company: </label>
+      <input id="company" type="text" [(ngModel)]="company">
+    </div>
+    <div>
+      <label for="meetingDate">Meeting Date: </label>
+      <input id="meetingDate" type="date" [(ngModel)]="meetingDate">
+    </div>
+    <div>
+      <label for="notes">Extra Notes: </label>
+      <input id="notes" type="text" [(ngModel)]="notes">
+    </div>
+  </div>
+</div>
+<div>
+  <button *ngIf="addContact === true" (click)="addToList()">Add Contact</button>
+</div>

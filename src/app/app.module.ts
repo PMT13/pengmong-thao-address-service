@@ -6,13 +6,17 @@ import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import {FormsModule} from "@angular/forms";
+import { LogoutComponent } from './logout/logout.component';
+import { AddContactComponent } from './add-contact/add-contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ContactComponent,
-    ContactListComponent
+    ContactListComponent,
+    LogoutComponent,
+    AddContactComponent,
   ],
     imports: [
         BrowserModule,

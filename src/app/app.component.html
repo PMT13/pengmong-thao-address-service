@@ -1,3 +1,5 @@
-<app-login></app-login>
-<app-contact></app-contact>
-<app-contact-list></app-contact-list>
+<app-login *ngIf="isLoggedIn === false" (onLogin)="login($event)" (onRegister)="register($event)"></app-login>
+<app-logout *ngIf="isLoggedIn === true" (onLogout)="logout()"></app-logout>
+<app-add-contact *ngIf="isLoggedIn === true" (onAdd)="addContact($event)"></app-add-contact>
+<app-contact-list *ngIf="isLoggedIn === true" [list]="contactList"></app-contact-list>
+
