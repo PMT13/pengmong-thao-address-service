@@ -1,11 +1,27 @@
 .contact{
-  border:1px solid black;
+  border:1px solid #F0803C;
   background-color: #225560;
   color:white;
   font-size: 1.3em;
+  height:100%;
+  width:90%;
+  overflow: scroll;
+  margin-right: auto;
+  margin-left: auto;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.contact::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.contact {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 .field{
   margin:2%;
+  overflow-wrap: break-word;
 }
 .buttonDiv{
   text-align: center;

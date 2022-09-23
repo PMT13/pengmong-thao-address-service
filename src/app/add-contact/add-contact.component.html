@@ -1,7 +1,7 @@
 <div class="outerDiv">
-  <div class="buttonDiv">
-    <button *ngIf="addContact === false" (click)="displayAddContact(false)">Create Contact</button>
-    <button *ngIf="addContact === true" (click)="displayAddContact(true)">Hide</button>
+  <div class="buttonDiv" >
+    <button class="pure-button pure-button-primary" *ngIf="addContact === false" (click)="displayAddContact(false)">Create Contact</button>
+    <button id="hide" class="pure-button" *ngIf="addContact === true" (click)="displayAddContact(true)">Hide</button>
   </div>
   <div *ngIf="addContact === true">
     <div class="insideDiv">
@@ -40,7 +40,7 @@
       <input id="notes" type="text" [(ngModel)]="notes">
     </div>
     <div class="buttonDiv">
-      <button *ngIf="addContact === true" (click)="addToList()">Add Contact</button>
+      <button id="add" class="pure-button pure-button-primary" *ngIf="addContact === true" (click)="addToList()">Add Contact</button>
     </div>
   </div>
 </div>

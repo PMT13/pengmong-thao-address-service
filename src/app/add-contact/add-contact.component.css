@@ -1,5 +1,4 @@
 .outerDiv{
-  border:1px solid black;
   margin: 1% auto;
   width: fit-content;
   background-color: #225560;
@@ -7,8 +6,11 @@
 }
 .buttonDiv{
   text-align: center;
-  margin:2%;
 }
 .insideDiv{
   margin:2%;
+}
+
+#hide, #add{
+  margin: 5% 2%;
 }

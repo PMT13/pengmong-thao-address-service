@@ -9,7 +9,8 @@ import { IContact } from './interfaces/IContact';
 })
 export class AppComponent {
   title = 'address-book';
-  isLoggedIn: boolean = true;
+  isLoggedIn: boolean = false;
+  username: string = "";
   accountList: IAccount[] = [{username: "pengmong", password: "thao"}];
   contactList: IContact[] = [
     {
@@ -22,10 +23,17 @@ export class AppComponent {
       relation: "brother",
       company: "UMN",
       notes: "Random notes go here",
+      user:"pengmong",
       id: 0
     }
-  ]
+  ];
+  userList: IContact[] = [];
+
+  ngOnInit(): void {
+  }
+
   login(info:IAccount){
+    this.username = info.username;
     const foundAccount = this.accountList.find((account) => {
       return account.username === info.username &&
         account.password === info.password
@@ -34,29 +42,52 @@ export class AppComponent {
       alert("Invalid Login");
       return;
     }
+    this.userList = this.contactList.filter(contact => contact.user === this.username);
     this.isLoggedIn = true;
   }
   register(info:IAccount){
+    const accountExist = this.accountList.find((account) => {return account.username === info.username});
+    if( accountExist !== undefined){
+      alert("Username already exists.");
+      return;
+    }
+    if(info.username === undefined || info.password === undefined){
+      alert("Please fill in all input fields");
+      return;
+    }
+    if(info.username.replace(/\s/g, '') === "" || info.password.replace(/\s/g, '') === ""){
+        alert("Please fill in all input fields");
+        return;
+    }
     this.accountList.push(info);
     this.isLoggedIn = true;
+    this.username = info.username;
     console.log(this.accountList);
   }
   logout(){
     this.isLoggedIn = false;
+    this.userList = [];
   }
   addContact(contact:IContact){
     this.contactList.push(contact);
+    this.userList.push(contact);
   }
   delete(contactToDelete:IContact){
     this.contactList = this.contactList.filter(contact => contact.id !== contactToDelete.id);
+    this.userList = this.userList.filter(contact => contact.id !== contactToDelete.id);
   }
   debug(){
     console.log(this.contactList);
+    console.log(this.userList);
   }
   update(contactToUpdate:IContact){
     const contactIndex = this.contactList.findIndex(contact => contact.id === contactToUpdate.id);
     if (contactIndex > -1) {
       this.contactList[contactIndex] = contactToUpdate;
+    }
+    const contactIndexUser = this.userList.findIndex(contact => contact.id === contactToUpdate.id);
+    if (contactIndexUser > -1) {
+      this.userList[contactIndexUser] = contactToUpdate;
     }
   }
 }

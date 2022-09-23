@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IContact } from '../interfaces/IContact';
 
 @Component({
@@ -20,16 +20,10 @@ export class AddContactComponent implements OnInit {
   notes!: string;
 
   @Output() onAdd = new EventEmitter<IContact>();
+  @Input() user!: string;
   constructor() { }
 
   ngOnInit(): void {
-    this.name = "";
-    this.address = "";
-    this.email = "";
-    this.relation = "";
-    this.company = "";
-    this.notes = "";
-    this.phone = "";
   }
 
   displayAddContact(bool:boolean){
@@ -55,6 +49,7 @@ export class AddContactComponent implements OnInit {
         relation: this.relation,
         company: this.company,
         notes: this.notes,
+        user: this.user,
         id: new Date().getTime()
       }
     )
