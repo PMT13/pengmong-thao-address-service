@@ -18,16 +18,29 @@ export class AddContactComponent implements OnInit {
   relation!: string;
   company!: string;
   notes!: string;
-  id: number = new Date().getTime();
 
   @Output() onAdd = new EventEmitter<IContact>();
   constructor() { }
 
   ngOnInit(): void {
+    this.name = "";
+    this.address = "";
+    this.email = "";
+    this.relation = "";
+    this.company = "";
+    this.notes = "";
+    this.phone = "";
   }
 
   displayAddContact(bool:boolean){
     this.addContact = !bool;
+    this.name = "";
+    this.address = "";
+    this.email = "";
+    this.relation = "";
+    this.company = "";
+    this.notes = "";
+    this.phone = "";
   }
 
   addToList(){
@@ -42,7 +55,7 @@ export class AddContactComponent implements OnInit {
         relation: this.relation,
         company: this.company,
         notes: this.notes,
-        id: this.id
+        id: new Date().getTime()
       }
     )
     this.name = "";

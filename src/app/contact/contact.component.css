@@ -1,3 +1,17 @@
 .contact{
   border:1px solid black;
+  background-color: #225560;
+  color:white;
+  font-size: 1.3em;
+}
+.field{
+  margin:2%;
+}
+.buttonDiv{
+  text-align: center;
+  margin:2%;
+}
+.buttonDiv button{
+  margin-right:1%;
+  margin-left:1%;
 }

@@ -1,5 +1,9 @@
 <div>
   <div class="contactList">
-    <app-contact *ngFor="let contact of list" [contact]="contact"></app-contact>
+    <app-contact class="contact"
+                *ngFor="let contact of list" [contact]="contact"
+                 (onDelete)="delete($event)"
+                 (onUpdate)="update($event)">
+    </app-contact>
   </div>
 </div>

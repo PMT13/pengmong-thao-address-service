@@ -47,4 +47,16 @@ export class AppComponent {
   addContact(contact:IContact){
     this.contactList.push(contact);
   }
+  delete(contactToDelete:IContact){
+    this.contactList = this.contactList.filter(contact => contact.id !== contactToDelete.id);
+  }
+  debug(){
+    console.log(this.contactList);
+  }
+  update(contactToUpdate:IContact){
+    const contactIndex = this.contactList.findIndex(contact => contact.id === contactToUpdate.id);
+    if (contactIndex > -1) {
+      this.contactList[contactIndex] = contactToUpdate;
+    }
+  }
 }

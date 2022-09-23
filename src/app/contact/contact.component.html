@@ -1,11 +1,57 @@
-<div class="contact">
-  <div><strong>Name</strong>: {{contact.name}}</div>
-  <div><strong>Relation</strong>: {{contact.relation}}</div>
-  <div><strong>Phone</strong>: {{contact.phone}}</div>
-  <div><strong>Email</strong>: {{contact.email}}</div>
-  <div><strong>Address</strong>: {{contact.address}}</div>
-  <div><strong>Birthday</strong>: {{contact.birthday}}</div>
-  <div><strong>Company</strong>: {{contact.company}}</div>
-  <div><strong>Meeting Date</strong>: {{contact.meetingDate}}</div>
-  <div><strong>Notes</strong>: {{contact.notes}}</div>
+<!--suppress ALL -->
+<div class="contact" *ngIf="isUpdating === false">
+  <div class="field"><strong>Name</strong>: {{contact.name}}</div>
+  <div class="field"><strong>Relation</strong>: {{contact.relation}}</div>
+  <div class="field"><strong>Phone</strong>: {{contact.phone}}</div>
+  <div class="field"><strong>Email</strong>: {{contact.email}}</div>
+  <div class="field"><strong>Address</strong>: {{contact.address}}</div>
+  <div class="field"><strong>Birthday</strong>: {{contact.birthday}}</div>
+  <div class="field"><strong>Company</strong>: {{contact.company}}</div>
+  <div class="field"><strong>Meeting Date</strong>: {{contact.meetingDate}}</div>
+  <div class="field"><strong>Notes</strong>: {{contact.notes}}</div>
+  <div class="buttonDiv">
+    <button (click)="delete()">Delete</button>
+    <button (click)="update()">Update</button>
+  </div>
+</div>
+<div class="contact" *ngIf="isUpdating === true">
+  <div class="field">
+    <label for="name">Name: </label>
+    <input id="name" type="text" [(ngModel)]="this.contactCopy.name">
+  </div>
+  <div class="field">
+    <label for="relation">Relation: </label>
+    <input id="relation" type="text" [(ngModel)]="this.contactCopy.relation">
+  </div>
+  <div class="field">
+    <label for="phone">Phone: </label>
+    <input id="phone" type="text" placeholder="XXX-XXX-XXXX" [(ngModel)]="this.contactCopy.phone">
+  </div>
+  <div class="field">
+    <label for="email">Email: </label>
+    <input id="email" type="text" placeholder="example@gmail.com" [(ngModel)]="this.contactCopy.email">
+  </div>
+  <div class="field">
+    <label for="address">Address: </label>
+    <input id="address" type="text" [(ngModel)]="this.contactCopy.address"></div>
+  <div class="field">
+    <label for="birthday">Birthday: </label>
+    <input id="birthday" type="date" [(ngModel)]="this.contactCopy.birthday">
+  </div>
+  <div class="field">
+    <label for="company">Company: </label>
+    <input id="company" type="text" [(ngModel)]="this.contactCopy.company">
+  </div>
+  <div class="field">
+    <label for="meetingDate">Meeting Date: </label>
+    <input id="meetingDate" type="date" [(ngModel)]="this.contactCopy.meetingDate">
+  </div>
+  <div class="field">
+    <label for="notes">Extra Notes: </label>
+    <input id="notes" type="text" [(ngModel)]="this.contactCopy.notes">
+  </div>
+  <div class="buttonDiv">
+    <button (click)="cancel()">Cancel</button>
+    <button (click)="save()">Save</button>
+  </div>
 </div>
