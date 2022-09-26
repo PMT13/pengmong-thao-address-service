@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IAccount } from './interfaces/IAccount';
 import { IContact } from './interfaces/IContact';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent {
   title = 'address-book';
   isLoggedIn: boolean = false;
   username: string = "";
-  accountList: IAccount[] = [{username: "pengmong", password: "thao"}];
+  accountList: IAccount[] = [];
   contactList: IContact[] = [
     {
       name: "Chup",
@@ -28,8 +29,9 @@ export class AppComponent {
     }
   ];
   userList: IContact[] = [];
-
+  constructor(private accountData: DataService) { }
   ngOnInit(): void {
+    this.accountList =  this.accountData.getAccountList();
   }
 
   login(info:IAccount){
@@ -59,10 +61,12 @@ export class AppComponent {
         alert("Please fill in all input fields");
         return;
     }
-    this.accountList.push(info);
+    this.accountData.addAccount(info);
+    this.accountList = this.accountData.getAccountList();
     this.isLoggedIn = true;
     this.username = info.username;
     console.log(this.accountList);
+    console.log(this.accountData.getAccountList());
   }
   logout(){
     this.isLoggedIn = false;
