@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IContact } from '../interfaces/IContact';
+import { Component,OnInit } from '@angular/core';
+import { DataService} from "../data.service";
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-add-contact',
@@ -19,9 +20,7 @@ export class AddContactComponent implements OnInit {
   company!: string;
   notes!: string;
 
-  @Output() onAdd = new EventEmitter<IContact>();
-  @Input() user!: string;
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit(): void {
   }
@@ -38,7 +37,7 @@ export class AddContactComponent implements OnInit {
   }
 
   addToList(){
-    this.onAdd.emit(
+    const newContact =
       {
         name: this.name,
         address: this.address,
@@ -49,10 +48,10 @@ export class AddContactComponent implements OnInit {
         relation: this.relation,
         company: this.company,
         notes: this.notes,
-        user: this.user,
-        id: new Date().getTime()
+        user: this.data.getUsername(),
+        id: uuidv4()
       }
-    )
+    this.data.addContact(newContact);
     this.name = "";
     this.address = "";
     this.email = "";
@@ -60,5 +59,7 @@ export class AddContactComponent implements OnInit {
     this.company = "";
     this.notes = "";
     this.phone = "";
+    console.log(this.data.getContactList());
+    console.log(this.data.getUserList());
   }
 }

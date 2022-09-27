@@ -1,10 +1,8 @@
 <div>
-  <div class="contactList" class="pure-g">
+  <div class="pure-g">
     <app-contact class="pure-u-1-2"
                 *ngFor="let contact of list"
-                 [contact]="contact"
-                 (onDelete)="delete($event)"
-                 (onUpdate)="update($event)">
+                 [contact]="contact">
     </app-contact>
   </div>
 </div>

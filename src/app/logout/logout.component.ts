@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataService} from "../data.service";
 
 @Component({
   selector: 'app-logout',
@@ -7,13 +8,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class LogoutComponent implements OnInit {
 
-  @Output() onLogout = new EventEmitter<void>();
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit(): void {
   }
 
   logout(){
-    this.onLogout.emit();
+    this.data.setLoginStatus(false);
+    this.data.updateUserList([]);
   }
 }

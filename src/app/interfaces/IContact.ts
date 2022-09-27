@@ -9,5 +9,5 @@ export interface IContact {
   company: string,
   notes: string,
   user: string,
-  id: number
+  id: string
 }
