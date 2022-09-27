@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.data.addAccount({username:this.username,password:this.password});
-    //this.accountList = this.data.getAccountList();
     this.data.setLoginStatus(true);
     this.data.setUsername(this.username);
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "../data.service";
+import {IContact} from "../interfaces/IContact";
 
 @Component({
   selector: 'app-contact-list',
@@ -8,10 +9,11 @@ import { DataService} from "../data.service";
 })
 export class ContactListComponent implements OnInit {
 
-  constructor(private data: DataService) { }
-  ngOnInit(): void {
+  userList: IContact[] = this.data.getUserList();
+   constructor(private data: DataService) {
+     this.data.getUserListService().subscribe((userList) => {
+       this.userList = userList;
+     });
   }
-  getData(){
-    return this.data;
-  }
+  ngOnInit(): void {}
 }

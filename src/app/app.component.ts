@@ -11,7 +11,6 @@ import { v4 as uuidv4 } from 'uuid';
 export class AppComponent {
   title = 'address-book';
   isLoggedIn: boolean = false;
-  username: string = "";
   contactList: IContact[] = [
     {
       name: "Chup",
@@ -27,15 +26,20 @@ export class AppComponent {
       id: uuidv4()
     }
   ];
-  userList: IContact[] = [];
-  constructor(private data: DataService) { }
+  // userList: IContact[] = [];
+  constructor(private data: DataService) {
+    this.data.getLoginStatus().subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn
+    });
+  }
 
   ngOnInit(): void {
     this.data.updateContactList(this.contactList);
+    this.data.getLoginStatus();
   }
 
-  getData(){
-    return this.data;
+  ngOnDestroy(){
+
   }
   debug(){
     console.log(this.data.getContactList());

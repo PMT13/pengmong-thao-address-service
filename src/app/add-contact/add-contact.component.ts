@@ -59,7 +59,5 @@ export class AddContactComponent implements OnInit {
     this.company = "";
     this.notes = "";
     this.phone = "";
-    console.log(this.data.getContactList());
-    console.log(this.data.getUserList());
   }
 }

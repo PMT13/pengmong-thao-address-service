@@ -1,7 +1,6 @@
-<app-login class="logButton" *ngIf="this.getData().checkLoginStatus() === false"></app-login>
-<app-logout class="logButton" *ngIf="this.getData().checkLoginStatus() === true"></app-logout>
-<app-add-contact *ngIf="this.getData().checkLoginStatus() === true"></app-add-contact>
+<app-login class="logButton" *ngIf="isLoggedIn === false"></app-login>
+<app-logout class="logButton" *ngIf="isLoggedIn === true"></app-logout>
+<app-add-contact *ngIf="isLoggedIn === true"></app-add-contact>
 <h1 *ngIf="isLoggedIn === true">My Contacts</h1>
-<app-contact-list *ngIf="this.getData().checkLoginStatus() === true">
-</app-contact-list>
+<app-contact-list *ngIf="isLoggedIn === true"></app-contact-list>
 <!--<button (click)="debug()">Debug</button>-->

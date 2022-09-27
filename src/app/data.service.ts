@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {IAccount} from "./interfaces/IAccount";
 import {IContact} from "./interfaces/IContact";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,10 @@ export class DataService {
   ];
   private contactList: IContact[] = [];
   private userList: IContact[] = [];
+  $userList: Subject<IContact[]> = new Subject<IContact[]>();
   private user: string = "";
   private isLoggedIn: boolean = false;
+  $isLoggedIn: Subject<boolean> = new Subject<boolean>();
 
   getAccountList(){
     return this.accountList;
@@ -37,11 +40,15 @@ export class DataService {
     this.userList.push(contact);
   }
 
+  getUserListService(){
+    return this.$userList;
+  }
   getUserList(){
     return this.userList;
   }
   updateUserList(contactList:IContact[]){
     this.userList = contactList;
+    this.$userList.next(this.userList);
   }
 
   getUsername(){
@@ -51,10 +58,11 @@ export class DataService {
     this.user = username;
   }
 
-  checkLoginStatus(){
-    return this.isLoggedIn;
+  getLoginStatus(){
+    return this.$isLoggedIn;
   }
   setLoginStatus(bool:boolean){
     this.isLoggedIn = bool;
+    this.$isLoggedIn.next(this.isLoggedIn);     // next notifies all things subscribed to the "this.$loggedIn" to update
   }
 }

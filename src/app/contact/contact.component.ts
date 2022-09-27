@@ -12,8 +12,13 @@ export class ContactComponent implements OnInit {
   @Input() contact!: IContact;
   isUpdating: boolean = false;
   contactCopy!: IContact;
+  userList: IContact[] = this.data.getUserList();
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService) {
+    this.data.getUserListService().subscribe((userList) => {
+      this.userList = userList;
+    });
+  }
 
   ngOnInit(): void {
     this.contactCopy = {...this.contact};
@@ -21,7 +26,7 @@ export class ContactComponent implements OnInit {
 
   delete(){
     this.data.updateContactList(this.data.getContactList().filter(contact => contact.id !== this.contact.id));
-    this.data.updateUserList(this.data.getUserList().filter(contact => contact.id !== this.contact.id));
+    this.data.updateUserList(this.userList.filter(contact => contact.id !== this.contact.id));
   }
   update(){
     this.isUpdating = true;
@@ -32,9 +37,10 @@ export class ContactComponent implements OnInit {
     if (contactIndex > -1) {
       this.data.getContactList()[contactIndex] = this.contactCopy;
     }
-    const contactIndexUser = this.data.getUserList().findIndex(contact => contact.id === this.contact.id);
+    const contactIndexUser = this.userList.findIndex(contact => contact.id === this.contact.id);
     if (contactIndexUser > -1) {
-      this.data.getUserList()[contactIndexUser] = this.contactCopy;
+      this.userList[contactIndexUser] = this.contactCopy;
+      this.data.updateUserList(this.userList);
     }
   }
   cancel(){
