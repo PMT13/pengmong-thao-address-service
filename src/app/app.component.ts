@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy } from '@angular/core';
 import { IContact } from './interfaces/IContact';
 import { DataService } from './data.service';
 import { v4 as uuidv4 } from 'uuid';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy{
   title = 'address-book';
   isLoggedIn: boolean = false;
   contactList: IContact[] = [
@@ -27,8 +28,9 @@ export class AppComponent {
     }
   ];
   // userList: IContact[] = [];
+  sub: Subscription;
   constructor(private data: DataService) {
-    this.data.getLoginStatus().subscribe((isLoggedIn) => {
+    this.sub = this.data.getLoginStatus().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn
     });
   }
@@ -39,7 +41,7 @@ export class AppComponent {
   }
 
   ngOnDestroy(){
-
+    this.sub.unsubscribe();
   }
   debug(){
     console.log(this.data.getContactList());
