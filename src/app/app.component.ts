@@ -38,7 +38,7 @@ export class AppComponent {
     return this.data;
   }
   debug(){
-    console.log(this.contactList);
-    console.log(this.userList);
+    console.log(this.data.getContactList());
+    console.log(this.data.getUserList());
   }
 }

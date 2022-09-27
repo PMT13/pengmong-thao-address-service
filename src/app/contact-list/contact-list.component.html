@@ -1,7 +1,7 @@
 <div>
   <div class="pure-g">
     <app-contact class="pure-u-1-2"
-                *ngFor="let contact of list"
+                *ngFor="let contact of this.getData().getUserList()"
                  [contact]="contact">
     </app-contact>
   </div>
